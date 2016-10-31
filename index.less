@@ -1,0 +1,224 @@
+//Variables for specific column targeting
+@column-1: ~"tr > :nth-child(1)";
+@column-2: ~"tr > :nth-child(2)";
+@column-3: ~"tr > :nth-child(3)";
+@column-4: ~"tr > :nth-child(4)";
+@column-5: ~"tr > :nth-child(5)";
+@column-6: ~"tr > :nth-child(6)";
+@column-7: ~"tr > :nth-child(7)";
+@column-8: ~"tr > :nth-child(8)";
+@column-9: ~"tr > :nth-child(9)";
+@column-10: ~"tr > :nth-child(10)";
+
+@default-opacity: .4;
+@hover-opacity: 1;
+
+//Change these priority variables to control which columns hide first
+@priority-low: @column-5, @column-6, @column-7;
+@priority-middle: @column-8, @column-9;
+@priority-high: @column-10;
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.ratings-table {
+  border-collapse: collapse;
+  max-width: 1600px;
+  table-layout: fixed;
+
+  margin: 0 auto;
+
+  &-wrapper {
+    overflow-x: auto;
+    margin-top: 35px;
+
+  }
+
+  &__header {
+    font-weight: 700;
+    &-average {
+      width: 23%;
+    }
+    &-last-week {
+      width: 75%;
+    }
+  }
+
+  &__subheader {
+    border-bottom: 2px solid grey;
+  }
+
+  &__medal {
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      border-radius: 1em;
+
+      margin-right: .4em;
+    }
+    &_first-place::before {
+      background-color: gold;
+    }
+    &_second-place::before {
+      background-color: silver;
+    }
+    &_third-place::before {
+      background-color: #CD7F32;
+    }
+  }
+
+  &__restaurant-link {
+    flex: 1;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    text-decoration: underline solid red;
+    -webkit-text-decoration: underline solid red;
+
+    &:link {
+      color: #2a7fdd;
+      text-decoration-color: red;
+    }
+    &:visited {
+      color: #6f57e6;
+    }
+    &:hover {
+      color: #e97901;
+    }
+  }
+
+  &__sparkline {
+    height: 1em;
+    display: flex;
+    align-items: flex-end;
+
+    &:hover .ratings-table__sparkline-bar:last-child {
+      opacity: @default-opacity;
+    }
+
+    &-bar {
+      display: inline-block;
+      float: left;
+      width: 4px;
+      height: 1em;
+      opacity: @default-opacity;
+
+      &:last-child {
+        opacity: @hover-opacity;
+      }
+
+      &:hover {
+        opacity: @hover-opacity;
+      }
+
+      &_increase {
+         background: rgb(0, 0, 0);
+      }
+
+      &_decrease {
+        background: rgb(255, 0, 0);
+      }
+    }
+  }
+
+  &__ratings-increase {
+    color: green;
+    position: relative;
+    padding-left: 15px;
+
+    &::before {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 5px 10px 5px;
+      border-color: transparent transparent green transparent;
+    }
+  }
+
+  &__ratings-decrease {
+    color: red;
+    position: relative;
+    padding-left: 15px;
+
+    &::before {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 5px 0 5px;
+      border-color:red transparent transparent transparent;
+    }
+  }
+
+  &__footer {
+    max-width: 1224px;
+    margin: 0 auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__google-doc {
+    display: inline-block;
+    max-width: 50%;
+  }
+
+  &__suggestions {
+    max-width: 50%;
+  }
+
+  & tr:hover {
+    background-color: rgba(211, 211, 211, .3);
+  }
+  & td {
+    padding: .3em;
+    height: 1px;
+
+  }
+}
+
+tbody td:nth-child(10n+5), tbody td:nth-child(10n+6), tbody td:nth-child(10n+7) {
+  color: red;
+}
+
+
+
+
+tbody td:nth-child(10n+1) {
+  text-align: right;
+}
+
+//media-queries for column hiding
+@media (max-width: 768px) {
+  @{priority-low} {
+    display: none;
+  }
+}
+
+@media (max-width: 525px) {
+  @{priority-middle} {
+    display: none;
+  }
+}
+
+@media (max-width: 320px) {
+  @{priority-high},
+  .ratings-table__header-last-week,
+  .ratings-table__divisor {
+    display: none;
+  }
+  .ratings-table__header-average{
+    width: 100%;
+  }
+
+}

@@ -1,0 +1,168 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ratings-table {
+  border-collapse: collapse;
+  max-width: 1600px;
+  table-layout: fixed;
+  margin: 0 auto;
+}
+.ratings-table-wrapper {
+  overflow-x: auto;
+  margin-top: 35px;
+}
+.ratings-table__header {
+  font-weight: 700;
+}
+.ratings-table__header-average {
+  width: 23%;
+}
+.ratings-table__header-last-week {
+  width: 75%;
+}
+.ratings-table__subheader {
+  border-bottom: 2px solid grey;
+}
+.ratings-table__medal::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 1em;
+  margin-right: .4em;
+}
+.ratings-table__medal_first-place::before {
+  background-color: gold;
+}
+.ratings-table__medal_second-place::before {
+  background-color: silver;
+}
+.ratings-table__medal_third-place::before {
+  background-color: #CD7F32;
+}
+.ratings-table__restaurant-link {
+  flex: 1;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  text-decoration: underline solid red;
+  -webkit-text-decoration: underline solid red;
+}
+.ratings-table__restaurant-link:link {
+  color: #2a7fdd;
+  text-decoration-color: red;
+}
+.ratings-table__restaurant-link:visited {
+  color: #6f57e6;
+}
+.ratings-table__restaurant-link:hover {
+  color: #e97901;
+}
+.ratings-table__sparkline {
+  height: 1em;
+  display: flex;
+  align-items: flex-end;
+}
+.ratings-table__sparkline:hover .ratings-table__sparkline-bar:last-child {
+  opacity: 0.4;
+}
+.ratings-table__sparkline-bar {
+  display: inline-block;
+  float: left;
+  width: 4px;
+  height: 1em;
+  opacity: 0.4;
+}
+.ratings-table__sparkline-bar:last-child {
+  opacity: 1;
+}
+.ratings-table__sparkline-bar:hover {
+  opacity: 1;
+}
+.ratings-table__sparkline-bar_increase {
+  background: #000000;
+}
+.ratings-table__sparkline-bar_decrease {
+  background: #ff0000;
+}
+.ratings-table__ratings-increase {
+  color: green;
+  position: relative;
+  padding-left: 15px;
+}
+.ratings-table__ratings-increase::before {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 5px 10px 5px;
+  border-color: transparent transparent green transparent;
+}
+.ratings-table__ratings-decrease {
+  color: red;
+  position: relative;
+  padding-left: 15px;
+}
+.ratings-table__ratings-decrease::before {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 5px 0 5px;
+  border-color: red transparent transparent transparent;
+}
+.ratings-table__footer {
+  max-width: 1224px;
+  margin: 0 auto;
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+}
+.ratings-table__google-doc {
+  display: inline-block;
+  max-width: 50%;
+}
+.ratings-table__suggestions {
+  max-width: 50%;
+}
+.ratings-table tr:hover {
+  background-color: rgba(211, 211, 211, 0.3);
+}
+.ratings-table td {
+  padding: .3em;
+  height: 1px;
+}
+tbody td:nth-child(10n+5),
+tbody td:nth-child(10n+6),
+tbody td:nth-child(10n+7) {
+  color: red;
+}
+tbody td:nth-child(10n+1) {
+  text-align: right;
+}
+@media (max-width: 768px) {
+  tr > :nth-child(5), tr > :nth-child(6), tr > :nth-child(7) {
+    display: none;
+  }
+}
+@media (max-width: 525px) {
+  tr > :nth-child(8), tr > :nth-child(9) {
+    display: none;
+  }
+}
+@media (max-width: 320px) {
+  tr > :nth-child(10),
+  .ratings-table__header-last-week,
+  .ratings-table__divisor {
+    display: none;
+  }
+  .ratings-table__header-average {
+    width: 100%;
+  }
+}
